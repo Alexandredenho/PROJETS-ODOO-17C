@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- ce template permet de supprimer le footer de l'email et remplace odoo par le nom de l'entreprise -->
+        <template id="mail_notification_layout_inherit" inherit_id="mail.mail_notification_layout">
+            <xpath expr="//div[contains(@style, 'color: #555555;')]" position="attributes">
+                <attribute name="style">display: none;</attribute>
+            </xpath>
+
+            <xpath expr="//div[@t-out='message.body']" position="replace">
+                <div t-out="message.body.replace('Odoo', company.name)" style="font-size: 13px;"/>
+            </xpath>
+        </template>
+
+
+        <template id="mail_notification_light_inherit" inherit_id="mail.mail_notification_light">
+            <xpath expr="//tr[td[@align='center']]" position="inside">
+                <td align="center" style="min-width: 590px; padding: 0 8px 0 8px; font-size:11px;">
+                    <hr width="100%"
+                        style="background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 4px 0px;"/>
+                    <b t-out="company.name"/>
+                    <br/>
+                    <div style="color: #999999;">
+                        <t t-out="company.phone"/>
+                        <t t-if="company.email and company.phone">|</t>
+                        <a t-if="company.email" t-att-href="'mailto:%s' % company.email"
+                           style="text-decoration:none; color: #999999;"
+                           t-out="company.email"/>
+                        <t t-if="company.website and (company.phone or company.email)">|</t>
+                        <a t-if="company.website" t-att-href="'%s' % company.website"
+                           style="text-decoration:none; color: #999999;"
+                           t-out="company.website"/>
+                    </div>
+                </td>
+            </xpath>
+        </template>
+
+        <!-- Ce template permet de supprimer le footer de l'authentification page de connexion -->
+        <template id="web_login_layout_inherit" inherit_id="web.login_layout" name="Web Login Layout">
+            <xpath expr="//div[@class='card-body']//div[last()]" position="replace">
+                <div class="text-center small mt-4 pt-3 login--footer" t-if="not disable_footer">
+                </div>
+            </xpath>
+        </template>
+
+        <template id="remove_powered_by_odoo" inherit_id="portal.portal_record_sidebar" priority="10">
+            <xpath expr="//div[child::a[@href='http://www.odoo.com?utm_source=db&amp;utm_medium=portal']]"
+                   position="replace">
+                <!-- Removed the Powered by Odoo link and its div -->
+            </xpath>
+        </template>
+
+        <template id="custom_brand_promotion" inherit_id="web.brand_promotion">
+        <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+            <div class="o_brand_promotion custom_brand">
+
+            </div>
+        </xpath>
+    </template>
+    </data>
+</odoo>

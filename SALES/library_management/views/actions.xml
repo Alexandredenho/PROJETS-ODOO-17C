@@ -1,0 +1,12 @@
+ <!-- ACTION : Affichage de la liste des livres -->
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Books</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">list,form,kanban</field>
+    </record>
+
+    <record id="menu_library_book" model="ir.ui.menu">
+    <field name="name">Livres</field>
+    <field name="parent_id" ref="menu_library"/>
+    <field name="action" ref="action_library_book"/>
+    </record>

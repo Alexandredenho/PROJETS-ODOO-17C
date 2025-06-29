@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Hériter de la vue du formulaire -->
+        <record id="email_compose_message_wizard_form_inherited" model="ir.ui.view">
+            <field name="name">mail.compose.message.form.inherited</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="arch" type="xml">
+                <form position="attributes">
+                    <attribute name="string">Alexandre</attribute>
+                </form>
+            </field>
+        </record>
+
+        <!-- Hériter de l'action pour modifier le titre de la fenêtre -->
+        <record id="mail.action_email_compose_message_wizard" model="ir.actions.act_window">
+            <field name="name">Alexandre</field>
+        </record>
+    </data>
+</odoo>

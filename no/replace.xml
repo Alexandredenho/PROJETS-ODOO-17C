@@ -1,0 +1,24 @@
+<odoo>
+    <!-- Hide OEM & Boost config -->
+    <record id="view_res_config_settings_inherit_app_customize" model="ir.ui.view">
+        <field name="name">res.config.settings.app_customize.hide</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="app_odoo_customize.view_app_theme_config_settings" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='app_odoo_customize']" position="attributes">
+                <attribute name="groups">base.group_system,!hide_config_by_group.group_admin_client</attribute>
+            </xpath>
+        </field>
+    </record>
+    <!-- Hide General Settings section in Odoo 17 -->
+    <record id="view_res_config_settings_hide_general" model="ir.ui.view">
+        <field name="name">res.config.settings.hide.general</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='general_settings']" position="attributes">
+                <attribute name="groups">base.group_system,!hide_config_by_group.group_admin_client</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
